@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Megaphone, Calendar, MapPin, Users, ExternalLink, Clock } from 'lucide-react';
 
@@ -8,7 +7,7 @@ const Campaigns = () => {
       id: 1,
       title: 'Sustainable Summer 2024',
       description: 'Choose eco-friendly accommodations and earn double credits for every sustainable choice you make during summer travels.',
-      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop',
+      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=400&fit=crop',
       endDate: 'August 31, 2024',
       participants: 1234,
       reward: 'Double Credits + Eco Badge',
@@ -19,7 +18,7 @@ const Campaigns = () => {
       id: 2,
       title: 'Refer & Explore',
       description: 'Invite your friends to join TravelPal and unlock exclusive group travel discounts for everyone.',
-      image: 'https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=400&h=200&fit=crop',
+      image: 'https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=800&h=400&fit=crop',
       endDate: 'July 15, 2024',
       participants: 856,
       reward: '500 Credits + Group Discount',
@@ -30,7 +29,7 @@ const Campaigns = () => {
       id: 3,
       title: 'Hidden Gems Discovery',
       description: 'Visit off-the-beaten-path destinations and share your experiences to inspire other travelers.',
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop',
+      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop',
       endDate: 'September 30, 2024',
       participants: 2156,
       reward: 'Explorer Badge + Featured Story',
@@ -85,11 +84,13 @@ const Campaigns = () => {
             <div key={campaign.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
               <div className="lg:flex">
                 <div className="lg:w-1/3">
-                  <img 
-                    src={campaign.image} 
-                    alt={campaign.title}
-                    className="w-full h-48 lg:h-full object-cover"
-                  />
+                  <div className="aspect-[2/1] w-full">
+                    <img 
+                      src={campaign.image} 
+                      alt={campaign.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
                 <div className="p-8 lg:w-2/3">
                   <div className="flex items-start justify-between mb-4">
