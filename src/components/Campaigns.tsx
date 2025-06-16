@@ -82,61 +82,57 @@ const Campaigns = () => {
         <div className="space-y-6">
           {activeCampaigns.map((campaign) => (
             <div key={campaign.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-              <div className="lg:flex">
-                <div className="lg:w-1/3">
-                  <div className="aspect-[2/1] w-full">
-                    <img 
-                      src={campaign.image} 
-                      alt={campaign.title}
-                      className="w-full h-full object-cover"
-                    />
+              <div className="aspect-[2/1] w-full">
+                <img 
+                  src={campaign.image} 
+                  alt={campaign.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-8">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">{campaign.title}</h3>
+                    <p className="text-gray-600 mb-4">{campaign.description}</p>
+                  </div>
+                  {getStatusBadge(campaign.status)}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <Calendar size={16} />
+                    <span className="text-sm">Ends {campaign.endDate}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <Users size={16} />
+                    <span className="text-sm">{campaign.participants.toLocaleString()} participants</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <ExternalLink size={16} />
+                    <span className="text-sm">{campaign.reward}</span>
                   </div>
                 </div>
-                <div className="p-8 lg:w-2/3">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">{campaign.title}</h3>
-                      <p className="text-gray-600 mb-4">{campaign.description}</p>
-                    </div>
-                    {getStatusBadge(campaign.status)}
-                  </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <div className="flex items-center space-x-2 text-gray-600">
-                      <Calendar size={16} />
-                      <span className="text-sm">Ends {campaign.endDate}</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-gray-600">
-                      <Users size={16} />
-                      <span className="text-sm">{campaign.participants.toLocaleString()} participants</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-gray-600">
-                      <ExternalLink size={16} />
-                      <span className="text-sm">{campaign.reward}</span>
-                    </div>
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium text-gray-700">Campaign Progress</span>
+                    <span className="text-sm text-gray-500">{campaign.progress}%</span>
                   </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      className="bg-gradient-to-r from-blue-500 to-teal-500 h-2 rounded-full transition-all duration-300"
+                      style={{ width: `${campaign.progress}%` }}
+                    ></div>
+                  </div>
+                </div>
 
-                  <div className="mb-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium text-gray-700">Campaign Progress</span>
-                      <span className="text-sm text-gray-500">{campaign.progress}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-gradient-to-r from-blue-500 to-teal-500 h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${campaign.progress}%` }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <div className="flex space-x-4">
-                    <button className="bg-gradient-to-r from-blue-500 to-teal-500 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all duration-200 font-medium">
-                      Join Campaign
-                    </button>
-                    <button className="border border-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:shadow-md transition-all duration-200 font-medium">
-                      Learn More
-                    </button>
-                  </div>
+                <div className="flex space-x-4">
+                  <button className="bg-gradient-to-r from-blue-500 to-teal-500 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all duration-200 font-medium">
+                    Join Campaign
+                  </button>
+                  <button className="border border-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:shadow-md transition-all duration-200 font-medium">
+                    Learn More
+                  </button>
                 </div>
               </div>
             </div>
