@@ -1,0 +1,60 @@
+
+import React from 'react';
+import { 
+  Calendar, 
+  List, 
+  Clock, 
+  User, 
+  Activity, 
+  Award,
+  Megaphone,
+  Plane
+} from 'lucide-react';
+
+interface SidebarProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+  const menuItems = [
+    { id: 'trip-landing', label: 'Current Trip', icon: Plane },
+    { id: 'trips', label: 'All Trips', icon: List },
+    { id: 'today', label: 'Today', icon: Clock },
+    { id: 'profile', label: 'Profile', icon: User },
+    { id: 'credits', label: 'Travel Credits', icon: Activity },
+    { id: 'leaderboard', label: 'Leaderboard', icon: Award },
+    { id: 'campaigns', label: 'Campaigns', icon: Megaphone },
+  ];
+
+  return (
+    <div className="w-80 bg-white/80 backdrop-blur-sm border-r border-gray-200 p-6">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">TravelPal</h1>
+        <p className="text-gray-600 text-sm">Your journey companion</p>
+      </div>
+      
+      <nav className="space-y-2">
+        {menuItems.map((item) => {
+          const Icon = item.icon;
+          return (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                activeTab === item.id
+                  ? 'bg-gradient-to-r from-blue-500 to-teal-500 text-white shadow-lg'
+                  : 'text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              <Icon size={20} />
+              <span className="font-medium">{item.label}</span>
+            </button>
+          );
+        })}
+      </nav>
+    </div>
+  );
+};
+
+export default Sidebar;
