@@ -1,6 +1,13 @@
 
 import React, { useState } from 'react';
-import { ChevronDown, Plus, Check } from 'lucide-react';
+import { Plus, Check } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface TripSectionProps {
   section: {
@@ -13,7 +20,6 @@ interface TripSectionProps {
 }
 
 const TripSection: React.FC<TripSectionProps> = ({ section }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
   
   const Icon = section.icon;
@@ -53,25 +59,32 @@ const TripSection: React.FC<TripSectionProps> = ({ section }) => {
   };
 
   return (
-    <div className={`rounded-xl border-2 ${getColorClasses(section.color)} p-6 hover:shadow-lg transition-all duration-200`}>
-      <div 
-        className="flex items-center justify-between cursor-pointer"
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
-        <div className="flex items-center space-x-3">
-          <Icon className={`${getIconColor(section.color)}`} size={24} />
-          <h3 className="text-lg font-semibold text-gray-800">{section.title}</h3>
+    <Dialog>
+      <DialogTrigger asChild>
+        <div className={`rounded-xl border-2 ${getColorClasses(section.color)} p-6 hover:shadow-lg transition-all duration-200 cursor-pointer`}>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Icon className={`${getIconColor(section.color)}`} size={24} />
+              <h3 className="text-lg font-semibold text-gray-800">{section.title}</h3>
+            </div>
+            <div className="text-gray-400 text-sm">
+              {section.items.length} items
+            </div>
+          </div>
         </div>
-        <ChevronDown 
-          className={`text-gray-500 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} 
-          size={20} 
-        />
-      </div>
+      </DialogTrigger>
       
-      {isExpanded && (
-        <div className="mt-4 space-y-2 animate-fade-in">
+      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="flex items-center space-x-3">
+            <Icon className={`${getIconColor(section.color)}`} size={24} />
+            <span>{section.title}</span>
+          </DialogTitle>
+        </DialogHeader>
+        
+        <div className="mt-4 space-y-2">
           {section.items.map((item, index) => (
-            <div key={index} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/50 transition-colors">
+            <div key={index} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
               {section.id === 'packing' ? (
                 <button
                   onClick={(e) => {
@@ -94,13 +107,14 @@ const TripSection: React.FC<TripSectionProps> = ({ section }) => {
               </span>
             </div>
           ))}
-          <button className="flex items-center space-x-2 text-gray-500 hover:text-gray-700 mt-3 transition-colors">
+          
+          <button className="flex items-center space-x-2 text-gray-500 hover:text-gray-700 mt-4 p-3 rounded-lg hover:bg-gray-50 transition-colors w-full">
             <Plus size={16} />
             <span className="text-sm">Add item</span>
           </button>
         </div>
-      )}
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 
