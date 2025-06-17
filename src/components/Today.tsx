@@ -1,8 +1,98 @@
-
-import React from 'react';
-import { Bell, Star, Clock, Plane, MapPin, AlertCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { Bell, Star, Clock, Plane, MapPin, AlertCircle, Calendar } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Today = () => {
+  const [showItinerary, setShowItinerary] = useState(false);
+
+  // Itinerary data for the modal (same as in TripSection)
+  const itineraryData = [
+    {
+      day: 1,
+      date: 'March 15, 2024',
+      title: 'Arrival & Shibuya',
+      activities: [
+        { time: '10:00 AM', activity: 'Arrive at Narita Airport', location: 'Narita International Airport' },
+        { time: '12:30 PM', activity: 'Check into hotel', location: 'Shibuya District' },
+        { time: '2:00 PM', activity: 'Lunch at local ramen shop', location: 'Shibuya' },
+        { time: '4:00 PM', activity: 'Explore Shibuya Crossing', location: 'Shibuya Crossing' },
+        { time: '7:00 PM', activity: 'Dinner at izakaya', location: 'Shibuya' }
+      ]
+    },
+    {
+      day: 2,
+      date: 'March 16, 2024',
+      title: 'Senso-ji & Asakusa',
+      activities: [
+        { time: '9:00 AM', activity: 'Visit Senso-ji Temple', location: 'Asakusa' },
+        { time: '11:00 AM', activity: 'Shopping at Nakamise Street', location: 'Asakusa' },
+        { time: '1:00 PM', activity: 'Traditional lunch', location: 'Asakusa' },
+        { time: '3:00 PM', activity: 'Tokyo Skytree visit', location: 'Sumida' },
+        { time: '6:00 PM', activity: 'River cruise', location: 'Sumida River' }
+      ]
+    },
+    {
+      day: 3,
+      date: 'March 17, 2024',
+      title: 'Mt. Fuji Day Trip',
+      activities: [
+        { time: '7:00 AM', activity: 'Depart for Mt. Fuji', location: 'Shinjuku Station' },
+        { time: '10:00 AM', activity: 'Lake Kawaguchi', location: 'Fujikawaguchiko' },
+        { time: '12:00 PM', activity: 'Lunch with Mt. Fuji view', location: 'Kawaguchiko' },
+        { time: '2:00 PM', activity: 'Chureito Pagoda', location: 'Fujiyoshida' },
+        { time: '8:00 PM', activity: 'Return to Tokyo', location: 'Tokyo' }
+      ]
+    }
+  ];
+
+  const renderItineraryModal = () => (
+    <div className="max-h-[60vh] overflow-y-auto space-y-4">
+      {itineraryData.map((day) => (
+        <Card key={day.day} className="overflow-hidden">
+          <CardHeader className="bg-gradient-to-r from-blue-500 to-teal-500 text-white">
+            <CardTitle className="flex items-center space-x-3">
+              <Calendar size={24} />
+              <div>
+                <div className="text-xl font-bold">Day {day.day}: {day.title}</div>
+                <div className="text-blue-100">{day.date}</div>
+              </div>
+            </CardTitle>
+          </CardHeader>
+          
+          <CardContent className="p-0">
+            <div className="space-y-0">
+              {day.activities.map((activity, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-start space-x-4 p-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-center space-x-2 min-w-[100px]">
+                    <Clock size={16} className="text-gray-500" />
+                    <span className="font-medium text-gray-700">{activity.time}</span>
+                  </div>
+                  
+                  <div className="flex-1">
+                    <h4 className="font-medium text-gray-800 mb-1">{activity.activity}</h4>
+                    <div className="flex items-center space-x-1 text-gray-500">
+                      <MapPin size={14} />
+                      <span className="text-sm">{activity.location}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
   const notifications = [
     {
       id: 1,
@@ -153,7 +243,10 @@ const Today = () => {
           <Plane className="mx-auto mb-2" size={24} />
           <span className="text-sm font-medium">Check Flight Status</span>
         </button>
-        <button className="p-4 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors">
+        <button 
+          onClick={() => setShowItinerary(true)}
+          className="p-4 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors"
+        >
           <MapPin className="mx-auto mb-2" size={24} />
           <span className="text-sm font-medium">View Itinerary</span>
         </button>
@@ -166,6 +259,20 @@ const Today = () => {
           <span className="text-sm font-medium">Rate Experience</span>
         </button>
       </div>
+
+      {/* Itinerary Modal */}
+      <Dialog open={showItinerary} onOpenChange={setShowItinerary}>
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center space-x-3">
+              <Calendar className="text-purple-600" size={24} />
+              <span>Itinerary</span>
+            </DialogTitle>
+          </DialogHeader>
+          
+          {renderItineraryModal()}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
