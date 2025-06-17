@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Calendar, MapPin, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const TripsList = () => {
   const trips = [
@@ -61,7 +62,11 @@ const TripsList = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {trips.map((trip) => (
-          <div key={trip.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group">
+          <Link 
+            key={trip.id} 
+            to={`/itinerary/${trip.id}`}
+            className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group block"
+          >
             <div className="relative h-48">
               <img 
                 src={trip.image} 
@@ -95,13 +100,13 @@ const TripsList = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  View Details
-                </button>
+                <span className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                  View Itinerary
+                </span>
                 <MapPin className="text-gray-400" size={20} />
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
