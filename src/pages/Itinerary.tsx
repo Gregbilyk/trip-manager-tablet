@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, MapPin, Clock, ArrowLeft } from 'lucide-react';
@@ -55,7 +54,7 @@ const Itinerary = () => {
     // Add more trip data as needed
   };
 
-  const trip = tripData[tripId as keyof typeof tripData];
+  const trip = tripData[Number(tripId) as keyof typeof tripData];
 
   if (!trip) {
     return (
