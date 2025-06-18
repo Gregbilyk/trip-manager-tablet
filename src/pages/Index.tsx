@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import Sidebar from '../components/Sidebar';
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import AppSidebar from '../components/AppSidebar';
 import TripLanding from '../components/TripLanding';
 import TripsList from '../components/TripsList';
 import Today from '../components/Today';
@@ -40,14 +41,18 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50 flex">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-      <main className="flex-1 p-6 overflow-auto">
-        <div className="max-w-7xl mx-auto">
-          {renderActiveTab()}
-        </div>
-      </main>
-    </div>
+    <SidebarProvider>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50 flex w-full">
+        <AppSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+        <SidebarInset>
+          <main className="flex-1 p-6 overflow-auto">
+            <div className="max-w-7xl mx-auto">
+              {renderActiveTab()}
+            </div>
+          </main>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
   );
 };
 
