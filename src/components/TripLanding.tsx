@@ -79,19 +79,19 @@ const TripLanding = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Trip Header */}
-      <div className="relative rounded-2xl overflow-hidden shadow-xl">
+      <div className="relative rounded-2xl overflow-hidden">
         <div 
-          className="h-64 bg-cover bg-center"
+          className="h-80 bg-cover bg-center"
           style={{ backgroundImage: `url(${currentTrip.image})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30 flex items-end">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end">
             <div className="p-8 text-white">
-              <h1 className="text-4xl font-bold mb-2">{currentTrip.destination}</h1>
-              <p className="text-xl opacity-90 mb-2">{currentTrip.dates}</p>
-              <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
-                <span className="text-lg font-semibold">{currentTrip.daysLeft} days to go!</span>
+              <h1 className="text-4xl font-light mb-2">{currentTrip.destination}</h1>
+              <p className="text-lg opacity-90 mb-4 font-light">{currentTrip.dates}</p>
+              <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 inline-block">
+                <span className="text-sm font-medium">{currentTrip.daysLeft} days to go</span>
               </div>
             </div>
           </div>
@@ -99,16 +99,16 @@ const TripLanding = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex space-x-4">
+      <div className="flex space-x-3">
         <button
           onClick={() => setShowChat(true)}
-          className="flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-teal-500 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all duration-200"
+          className="flex items-center space-x-2 bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-200 font-medium"
         >
-          <MessageSquare size={20} />
+          <MessageSquare size={18} />
           <span>Group Chat</span>
         </button>
-        <button className="flex items-center space-x-2 bg-white border border-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:shadow-md transition-all duration-200">
-          <Calendar size={20} />
+        <button className="flex items-center space-x-2 bg-white border border-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 font-medium">
+          <Calendar size={18} />
           <span>Sync Calendar</span>
         </button>
       </div>
@@ -121,18 +121,18 @@ const TripLanding = () => {
       </div>
 
       {/* Utilities */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Quick Tools</h2>
+      <div className="mt-12">
+        <h2 className="text-2xl font-light text-gray-900 mb-6">Quick Tools</h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {utilities.map((utility) => {
             const Icon = utility.icon;
             return (
               <button
                 key={utility.id}
-                className={`p-4 rounded-xl border-2 border-${utility.color}-200 hover:border-${utility.color}-400 bg-${utility.color}-50 hover:bg-${utility.color}-100 transition-all duration-200 group`}
+                className="p-6 rounded-xl border border-gray-200 hover:border-gray-300 bg-white hover:bg-gray-50 transition-all duration-200 group"
               >
-                <Icon className={`text-${utility.color}-600 mb-2 mx-auto group-hover:scale-110 transition-transform`} size={24} />
-                <p className={`text-${utility.color}-800 font-medium text-sm`}>{utility.title}</p>
+                <Icon className="text-gray-600 mb-3 mx-auto group-hover:scale-105 transition-transform" size={24} />
+                <p className="text-gray-800 font-medium text-sm">{utility.title}</p>
               </button>
             );
           })}

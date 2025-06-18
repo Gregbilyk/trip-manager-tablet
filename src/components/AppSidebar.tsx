@@ -38,18 +38,18 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ activeTab, setActiveTab }) => {
   ];
 
   return (
-    <Sidebar className="bg-white/80 backdrop-blur-sm border-r border-gray-200">
-      <SidebarHeader className="p-6">
+    <Sidebar className="bg-white border-r border-gray-100">
+      <SidebarHeader className="p-6 border-b border-gray-50">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">TravelPal</h1>
-          <p className="text-gray-600 text-sm group-data-[collapsible=icon]:hidden">Your journey companion</p>
+          <h1 className="text-xl font-semibold text-gray-900 mb-1">TravelPal</h1>
+          <p className="text-sm text-gray-500 group-data-[collapsible=icon]:hidden">Your journey companion</p>
         </div>
       </SidebarHeader>
       
-      <SidebarContent>
+      <SidebarContent className="p-4">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-2">
+            <SidebarMenu className="space-y-1">
               {menuItems.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -57,14 +57,14 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ activeTab, setActiveTab }) => {
                     <SidebarMenuButton
                       onClick={() => setActiveTab(item.id)}
                       isActive={activeTab === item.id}
-                      className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                      className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium ${
                         activeTab === item.id
-                          ? 'bg-gradient-to-r from-blue-500 to-teal-500 text-white shadow-lg'
-                          : 'text-gray-700 hover:bg-gray-100'
+                          ? 'bg-gray-900 text-white'
+                          : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                       }`}
                     >
-                      <Icon size={20} />
-                      <span className="font-medium">{item.label}</span>
+                      <Icon size={18} />
+                      <span>{item.label}</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );

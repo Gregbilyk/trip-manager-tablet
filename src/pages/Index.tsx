@@ -42,14 +42,14 @@ const Index = () => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50 flex w-full">
+      <div className="min-h-screen bg-white flex w-full">
         <AppSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         <SidebarInset>
-          <header className="sticky top-0 z-50 flex h-16 shrink-0 items-center gap-2 border-b px-4 bg-white/80 backdrop-blur-sm">
-            <SidebarTrigger className="-ml-1" />
+          <header className="sticky top-0 z-50 flex h-16 shrink-0 items-center gap-2 border-b border-gray-100 px-6 bg-white">
+            <SidebarTrigger className="-ml-1 text-gray-600 hover:text-gray-900" />
           </header>
-          <main className="flex-1 p-6 overflow-auto">
-            <div className="max-w-7xl mx-auto">
+          <main className="flex-1 p-8 overflow-auto">
+            <div className="max-w-6xl mx-auto">
               {renderActiveTab()}
             </div>
           </main>

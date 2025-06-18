@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Plus, Check, Calendar, MapPin, Clock } from 'lucide-react';
 import {
@@ -102,13 +101,13 @@ const TripSection: React.FC<TripSectionProps> = ({ section }) => {
   const renderItineraryModal = () => (
     <div className="max-h-[60vh] overflow-y-auto space-y-4">
       {itineraryData.map((day) => (
-        <Card key={day.day} className="overflow-hidden">
-          <CardHeader className="bg-gradient-to-r from-blue-500 to-teal-500 text-white">
+        <Card key={day.day} className="overflow-hidden border-gray-200">
+          <CardHeader className="bg-gray-900 text-white">
             <CardTitle className="flex items-center space-x-3">
-              <Calendar size={24} />
+              <Calendar size={20} />
               <div>
-                <div className="text-xl font-bold">Day {day.day}: {day.title}</div>
-                <div className="text-blue-100">{day.date}</div>
+                <div className="text-lg font-medium">Day {day.day}: {day.title}</div>
+                <div className="text-gray-300 text-sm">{day.date}</div>
               </div>
             </CardTitle>
           </CardHeader>
@@ -121,15 +120,15 @@ const TripSection: React.FC<TripSectionProps> = ({ section }) => {
                   className="flex items-start space-x-4 p-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"
                 >
                   <div className="flex items-center space-x-2 min-w-[100px]">
-                    <Clock size={16} className="text-gray-500" />
-                    <span className="font-medium text-gray-700">{activity.time}</span>
+                    <Clock size={14} className="text-gray-500" />
+                    <span className="font-medium text-gray-700 text-sm">{activity.time}</span>
                   </div>
                   
                   <div className="flex-1">
-                    <h4 className="font-medium text-gray-800 mb-1">{activity.activity}</h4>
+                    <h4 className="font-medium text-gray-900 mb-1">{activity.activity}</h4>
                     <div className="flex items-center space-x-1 text-gray-500">
-                      <MapPin size={14} />
-                      <span className="text-sm">{activity.location}</span>
+                      <MapPin size={12} />
+                      <span className="text-xs">{activity.location}</span>
                     </div>
                   </div>
                 </div>
@@ -151,25 +150,25 @@ const TripSection: React.FC<TripSectionProps> = ({ section }) => {
                 e.stopPropagation();
                 toggleItem(index);
               }}
-              className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
+              className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${
                 checkedItems.has(index) 
-                  ? 'bg-green-500 border-green-500 text-white' 
-                  : 'border-gray-300'
+                  ? 'bg-gray-900 border-gray-900 text-white' 
+                  : 'border-gray-300 hover:border-gray-400'
               }`}
             >
-              {checkedItems.has(index) && <Check size={12} />}
+              {checkedItems.has(index) && <Check size={10} />}
             </button>
           ) : (
-            <div className={`w-2 h-2 rounded-full bg-${section.color}-400`}></div>
+            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
           )}
-          <span className={`text-gray-700 ${checkedItems.has(index) && section.id === 'packing' ? 'line-through opacity-60' : ''}`}>
+          <span className={`text-gray-700 text-sm ${checkedItems.has(index) && section.id === 'packing' ? 'line-through opacity-60' : ''}`}>
             {item}
           </span>
         </div>
       ))}
       
       <button className="flex items-center space-x-2 text-gray-500 hover:text-gray-700 mt-4 p-3 rounded-lg hover:bg-gray-50 transition-colors w-full">
-        <Plus size={16} />
+        <Plus size={14} />
         <span className="text-sm">Add item</span>
       </button>
     </div>
@@ -178,13 +177,13 @@ const TripSection: React.FC<TripSectionProps> = ({ section }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className={`rounded-xl border-2 ${getColorClasses(section.color)} p-6 hover:shadow-lg transition-all duration-200 cursor-pointer`}>
+        <div className="rounded-xl border border-gray-200 bg-white p-6 hover:border-gray-300 hover:shadow-sm transition-all duration-200 cursor-pointer">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <Icon className={`${getIconColor(section.color)}`} size={24} />
-              <h3 className="text-lg font-semibold text-gray-800">{section.title}</h3>
+              <Icon className="text-gray-600" size={20} />
+              <h3 className="text-base font-medium text-gray-900">{section.title}</h3>
             </div>
-            <div className="text-gray-400 text-sm">
+            <div className="text-gray-400 text-xs">
               {section.id === 'itinerary' ? '3 days' : `${section.items.length} items`}
             </div>
           </div>
@@ -194,7 +193,7 @@ const TripSection: React.FC<TripSectionProps> = ({ section }) => {
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center space-x-3">
-            <Icon className={`${getIconColor(section.color)}`} size={24} />
+            <Icon className="text-gray-600" size={20} />
             <span>{section.title}</span>
           </DialogTitle>
         </DialogHeader>
