@@ -19,7 +19,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 interface AppSidebarProps {
@@ -41,12 +40,9 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ activeTab, setActiveTab }) => {
   return (
     <Sidebar className="bg-white/80 backdrop-blur-sm border-r border-gray-200">
       <SidebarHeader className="p-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">TravelPal</h1>
-            <p className="text-gray-600 text-sm group-data-[collapsible=icon]:hidden">Your journey companion</p>
-          </div>
-          <SidebarTrigger className="ml-auto" />
+        <div>
+          <h1 className="text-2xl font-bold text-gray-800 mb-2">TravelPal</h1>
+          <p className="text-gray-600 text-sm group-data-[collapsible=icon]:hidden">Your journey companion</p>
         </div>
       </SidebarHeader>
       
