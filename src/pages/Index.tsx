@@ -45,7 +45,7 @@ const Index = () => {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50 flex w-full">
         <AppSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+          <header className="sticky top-0 z-50 flex h-16 shrink-0 items-center gap-2 border-b px-4 bg-white/80 backdrop-blur-sm">
             <SidebarTrigger className="-ml-1" />
           </header>
           <main className="flex-1 p-6 overflow-auto">
