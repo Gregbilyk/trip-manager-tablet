@@ -181,6 +181,55 @@
 }
 
 /* ----------------------------------------------------------------
+   Light mode — same accents, ivory page + cobalt ink
+   Apply data-mode="light" to the app root div
+   ---------------------------------------------------------------- */
+[data-mode="light"] {
+  /* shadcn bridge — light remapping */
+  --background:   44 41% 87%;   /* ivory-deep  #ECE5D2 */
+  --foreground:  210 56% 13%;   /* cobalt-ink  #0F2235 */
+  --card:         46 62% 96%;   /* ivory-elevated #FBF8EE */
+  --card-foreground:  210 56% 13%;
+  --popover:          46 62% 96%;
+  --popover-foreground: 210 56% 13%;
+  --primary:              19 71% 59%;
+  --primary-foreground:   43 51% 92%;
+  --secondary:            46 62% 96%;
+  --secondary-foreground: 207 19% 45%;
+  --muted:            44 41% 87%;
+  --muted-foreground: 207 19% 45%;
+  --accent:             172 23% 53%;
+  --accent-foreground:  210 56% 13%;
+  --destructive:             8 51% 37%;
+  --destructive-foreground: 43 51% 92%;
+  --border: 39 30% 81%;
+  --input:  39 30% 81%;
+  --ring:    19 71% 59%;
+  --sidebar-background:         44 41% 87%;
+  --sidebar-foreground:        210 56% 13%;
+  --sidebar-primary:            19 71% 59%;
+  --sidebar-primary-foreground: 43 51% 92%;
+  --sidebar-accent:             46 62% 96%;
+  --sidebar-accent-foreground: 210 56% 13%;
+  --sidebar-border:             39 30% 81%;
+  --sidebar-ring:               19 71% 59%;
+
+  /* Concierge raw token remap for light base */
+  --cobalt:          #F5EFE0;
+  --cobalt-deep:     #ECE5D2;
+  --cobalt-surface:  #FBF8EE;
+  --cobalt-elevated: #FFFEF8;
+  --cobalt-line:     #DDD3C0;
+  --ivory:           #0F2235;
+  --steel:           #5C7488;
+  --cool-overlay:    rgba(15, 34, 53, 0.18);
+  --ivory-soft:      rgba(15, 34, 53, 0.04);
+  --ivory-line:      rgba(15, 34, 53, 0.10);
+  --shadow-soft:     0 8px 40px rgba(15, 34, 53, 0.10);
+  --shadow-soft-lg:  0 18px 60px rgba(15, 34, 53, 0.16);
+}
+
+/* ----------------------------------------------------------------
    Ambient hue shift — set data-ambient on the app root div
    Barely-there tint away from base cobalt over 900ms
    ---------------------------------------------------------------- */
