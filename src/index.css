@@ -181,6 +181,44 @@
 }
 
 /* ----------------------------------------------------------------
+   Force dark — apply data-mode="dark" to any child element to lock
+   it into the dark palette regardless of the parent's mode setting
+   ---------------------------------------------------------------- */
+[data-mode="dark"] {
+  --background:   210 56% 13%;
+  --foreground:    43 51% 92%;
+  --card:          209 54% 19%;
+  --card-foreground: 43 51% 92%;
+  --popover:       213 67% 10%;
+  --popover-foreground: 43 51% 92%;
+  --primary:             19 71% 59%;
+  --primary-foreground: 213 67% 10%;
+  --secondary:             209 54% 19%;
+  --secondary-foreground:  207 29% 70%;
+  --muted:             213 67% 10%;
+  --muted-foreground:  207 29% 70%;
+  --accent:             172 23% 53%;
+  --accent-foreground:   43 51% 92%;
+  --destructive:             8 51% 37%;
+  --destructive-foreground: 43 51% 92%;
+  --border: 210 47% 23%;
+  --input:  210 47% 23%;
+  --ring:    19 71% 59%;
+  --cobalt:          #0F2235;
+  --cobalt-deep:     #081729;
+  --cobalt-surface:  #16314A;
+  --cobalt-elevated: #1C3D5C;
+  --cobalt-line:     #1F3A55;
+  --ivory:           #F5EFE0;
+  --steel:           #9CB5C9;
+  --cool-overlay:    rgba(8, 18, 30, 0.36);
+  --ivory-soft:      rgba(245, 239, 224, 0.08);
+  --ivory-line:      rgba(245, 239, 224, 0.16);
+  --shadow-soft:     0 8px 40px rgba(0, 8, 18, 0.32);
+  --shadow-soft-lg:  0 18px 60px rgba(0, 8, 18, 0.50);
+}
+
+/* ----------------------------------------------------------------
    Light mode — same accents, ivory page + cobalt ink
    Apply data-mode="light" to the app root div
    ---------------------------------------------------------------- */

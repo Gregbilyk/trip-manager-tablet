@@ -43,7 +43,7 @@ const TripLanding = () => {
   ];
 
   return (
-    <div>
+    <div data-mode="dark">
       {/* ── Hero ── */}
       <div className="relative overflow-hidden mb-10" style={{ borderRadius: 0 }}>
         <div className="h-80 lg:h-96 relative">
