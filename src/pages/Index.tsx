@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Sun, Moon } from 'lucide-react';
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from '../components/AppSidebar';
 import TripLanding from '../components/TripLanding';
@@ -15,7 +14,7 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState('trip-landing');
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [ambient, setAmbient] = useState<string | null>(null);
-  const [mode, setMode] = useState<'dark' | 'light'>('dark');
+  const [mode] = useState<'dark' | 'light'>('dark');
 
   const renderActiveTab = () => {
     switch (activeTab) {
@@ -51,23 +50,6 @@ const Index = () => {
               className="-ml-1 transition-colors"
               style={{ color: 'var(--steel)' }}
             />
-            {/* Light / dark mode toggle */}
-            <button
-              onClick={() => setMode(m => m === 'dark' ? 'light' : 'dark')}
-              className="flex items-center justify-center w-8 h-8 rounded transition-all duration-220"
-              style={{
-                color: 'var(--steel)',
-                background: 'transparent',
-                border: '1px solid var(--cobalt-line)',
-                borderRadius: 'var(--r-card)',
-              }}
-              aria-label="Toggle light/dark mode"
-            >
-              {mode === 'dark'
-                ? <Sun  size={15} strokeWidth={1.5} />
-                : <Moon size={15} strokeWidth={1.5} />
-              }
-            </button>
           </header>
           <main className="flex-1 p-8 overflow-auto">
             <div className="max-w-6xl mx-auto">
