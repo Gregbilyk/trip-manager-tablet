@@ -18,7 +18,17 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				display:  ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
+				headline: ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
+				body:     ['Lora', '"Iowan Old Style"', 'Georgia', 'serif'],
+				ui:       ['Jost', '"Avenir Next"', '"Helvetica Neue"', 'sans-serif'],
+				accent:   ['"Cormorant Infant"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+				sans:     ['Jost', '"Avenir Next"', '"Helvetica Neue"', 'sans-serif'],
+				serif:    ['Lora', '"Iowan Old Style"', 'Georgia', 'serif'],
+			},
 			colors: {
+				/* shadcn / Radix bridge — keep these working */
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -61,7 +71,27 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				/* Concierge raw palette — use as bg-cobalt, text-copper, etc. */
+				cobalt: {
+					DEFAULT:  '#0F2235',
+					deep:     '#081729',
+					surface:  '#16314A',
+					elevated: '#1C3D5C',
+					line:     '#1F3A55',
+				},
+				ivory:    '#F5EFE0',
+				steel:    '#9CB5C9',
+				copper: {
+					DEFAULT: '#E07A4B',
+					deep:    '#B95E33',
+				},
+				verdigris: {
+					DEFAULT: '#6CA39C',
+					deep:    '#4A8580',
+				},
+				mustard:  '#C9943A',
+				oxblood:  '#8C3A2E',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

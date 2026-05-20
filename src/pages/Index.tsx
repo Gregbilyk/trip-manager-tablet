@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from '../components/AppSidebar';
@@ -14,25 +13,18 @@ import Onboarding from '../components/Onboarding';
 const Index = () => {
   const [activeTab, setActiveTab] = useState('trip-landing');
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [ambient, setAmbient] = useState<string | null>(null);
 
   const renderActiveTab = () => {
     switch (activeTab) {
-      case 'trip-landing':
-        return <TripLanding />;
-      case 'trips':
-        return <TripsList />;
-      case 'today':
-        return <Today />;
-      case 'profile':
-        return <Profile />;
-      case 'credits':
-        return <Credits />;
-      case 'leaderboard':
-        return <Leaderboard />;
-      case 'campaigns':
-        return <Campaigns />;
-      default:
-        return <TripLanding />;
+      case 'trip-landing': return <TripLanding />;
+      case 'trips':        return <TripsList onAmbient={setAmbient} />;
+      case 'today':        return <Today />;
+      case 'profile':      return <Profile />;
+      case 'credits':      return <Credits />;
+      case 'leaderboard':  return <Leaderboard />;
+      case 'campaigns':    return <Campaigns />;
+      default:             return <TripLanding />;
     }
   };
 
@@ -42,11 +34,20 @@ const Index = () => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen bg-white flex w-full">
+      {/* data-ambient drives the page background hue-shift via CSS */}
+      <div
+        className="min-h-screen flex w-full"
+        style={{ background: 'var(--cobalt)', transition: 'background 900ms cubic-bezier(0.22,0.61,0.36,1)' }}
+        data-ambient={ambient ?? undefined}
+      >
         <AppSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         <SidebarInset>
-          <header className="sticky top-0 z-50 flex h-16 shrink-0 items-center gap-2 border-b border-gray-100 px-6 bg-white">
-            <SidebarTrigger className="-ml-1 text-gray-600 hover:text-gray-900" />
+          {/* Glass topbar */}
+          <header className="topbar-glass sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 px-6">
+            <SidebarTrigger
+              className="-ml-1 text-steel hover:text-ivory transition-colors"
+              style={{ color: 'var(--steel)' }}
+            />
           </header>
           <main className="flex-1 p-8 overflow-auto">
             <div className="max-w-6xl mx-auto">

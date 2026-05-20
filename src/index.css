@@ -1,103 +1,384 @@
+/* ================================================================
+   Concierge Design System — Refined Wanderlust · Midnight Cobalt
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Cormorant+Infant:ital,wght@1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
-
+/* ----------------------------------------------------------------
+   shadcn / Radix variable bridge — Concierge dark tokens
+   ---------------------------------------------------------------- */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Ground */
+    --background:   210 56% 13%;   /* cobalt   #0F2235 */
+    --foreground:    43 51% 92%;   /* ivory    #F5EFE0 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Cards / surfaces */
+    --card:          209 54% 19%;  /* cobalt-surface #16314A */
+    --card-foreground: 43 51% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Popovers */
+    --popover:       213 67% 10%;  /* cobalt-deep #081729 */
+    --popover-foreground: 43 51% 92%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary = Copper — active / CTA */
+    --primary:             19 71% 59%;   /* copper #E07A4B */
+    --primary-foreground: 213 67% 10%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary = cobalt-surface */
+    --secondary:             209 54% 19%;
+    --secondary-foreground:  207 29% 70%; /* steel #9CB5C9 */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted = cobalt-deep */
+    --muted:             213 67% 10%;
+    --muted-foreground:  207 29% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent = Verdigris — confirmed / completed */
+    --accent:             172 23% 53%;   /* verdigris #6CA39C */
+    --accent-foreground:   43 51% 92%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive = Oxblood */
+    --destructive:             8 51% 37%;
+    --destructive-foreground: 43 51% 92%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders & inputs */
+    --border: 210 47% 23%;  /* cobalt-line #1F3A55 */
+    --input:  210 47% 23%;
+    --ring:    19 71% 59%;  /* copper */
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar */
+    --sidebar-background:         213 67% 10%;
+    --sidebar-foreground:          43 51% 92%;
+    --sidebar-primary:             19 71% 59%;
+    --sidebar-primary-foreground: 213 67% 10%;
+    --sidebar-accent:             209 54% 19%;
+    --sidebar-accent-foreground:   43 51% 92%;
+    --sidebar-border:             210 47% 23%;
+    --sidebar-ring:                19 71% 59%;
   }
 
+  /* Concierge is dark-first — .dark mirrors :root */
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background:   210 56% 13%;
+    --foreground:    43 51% 92%;
+    --card:          209 54% 19%;
+    --card-foreground: 43 51% 92%;
+    --popover:       213 67% 10%;
+    --popover-foreground: 43 51% 92%;
+    --primary:             19 71% 59%;
+    --primary-foreground: 213 67% 10%;
+    --secondary:             209 54% 19%;
+    --secondary-foreground:  207 29% 70%;
+    --muted:             213 67% 10%;
+    --muted-foreground:  207 29% 70%;
+    --accent:             172 23% 53%;
+    --accent-foreground:   43 51% 92%;
+    --destructive:             8 51% 37%;
+    --destructive-foreground: 43 51% 92%;
+    --border: 210 47% 23%;
+    --input:  210 47% 23%;
+    --ring:    19 71% 59%;
+    --sidebar-background:         213 67% 10%;
+    --sidebar-foreground:          43 51% 92%;
+    --sidebar-primary:             19 71% 59%;
+    --sidebar-primary-foreground: 213 67% 10%;
+    --sidebar-accent:             209 54% 19%;
+    --sidebar-accent-foreground:   43 51% 92%;
+    --sidebar-border:             210 47% 23%;
+    --sidebar-ring:                19 71% 59%;
   }
 }
 
+/* ----------------------------------------------------------------
+   Concierge raw design tokens (available everywhere as CSS vars)
+   ---------------------------------------------------------------- */
+:root {
+  --cobalt:          #0F2235;
+  --cobalt-deep:     #081729;
+  --cobalt-surface:  #16314A;
+  --cobalt-elevated: #1C3D5C;
+  --ivory:           #F5EFE0;
+  --steel:           #9CB5C9;
+  --copper:          #E07A4B;
+  --copper-deep:     #B95E33;
+  --verdigris:       #6CA39C;
+  --verdigris-deep:  #4A8580;
+  --mustard:         #C9943A;
+  --oxblood:         #8C3A2E;
+  --cobalt-line:     #1F3A55;
+
+  --cool-overlay:   rgba(8, 18, 30, 0.36);
+  --copper-soft:    rgba(224, 122, 75, 0.16);
+  --copper-line:    rgba(224, 122, 75, 0.42);
+  --verdigris-soft: rgba(108, 163, 156, 0.20);
+  --verdigris-line: rgba(108, 163, 156, 0.42);
+  --mustard-soft:   rgba(201, 148, 58, 0.22);
+  --mustard-line:   rgba(201, 148, 58, 0.46);
+  --oxblood-soft:   rgba(140, 58, 46, 0.30);
+  --oxblood-line:   rgba(140, 58, 46, 0.50);
+  --ivory-soft:     rgba(245, 239, 224, 0.08);
+  --ivory-line:     rgba(245, 239, 224, 0.16);
+
+  --font-display:  "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --font-headline: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --font-body:     "Lora", "Iowan Old Style", Georgia, serif;
+  --font-ui:       "Jost", "Avenir Next", "Helvetica Neue", sans-serif;
+  --font-accent:   "Cormorant Infant", "Cormorant Garamond", Georgia, serif;
+
+  --r-none:  0;
+  --r-input: 4px;
+  --r-card:  8px;
+  --r-pill:  999px;
+
+  --shadow-soft:    0 8px 40px rgba(0, 8, 18, 0.32);
+  --shadow-soft-lg: 0 18px 60px rgba(0, 8, 18, 0.50);
+
+  --ease-editorial: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-quick: 220ms;
+  --dur-mid:   500ms;
+  --dur-slow:  900ms;
+}
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
 @layer base {
-  * {
-    @apply border-border;
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    color-scheme: dark;
+    background: var(--cobalt);
+    transition: background var(--dur-slow) var(--ease-editorial);
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  * { @apply border-border; }
+
+  ::selection {
+    background: var(--copper-soft);
+    color: var(--ivory);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headline);
+    color: var(--ivory);
+    margin: 0;
   }
 }
+
+/* ----------------------------------------------------------------
+   Ambient hue shift — set data-ambient on the app root div
+   Barely-there tint away from base cobalt over 900ms
+   ---------------------------------------------------------------- */
+[data-ambient="tokyo"]    { background: #122438 !important; }
+[data-ambient="paris"]    { background: #132233 !important; }
+[data-ambient="bali"]     { background: #0e2519 !important; }
+[data-ambient="london"]   { background: #111f2e !important; }
+[data-ambient="new-york"] { background: #181520 !important; }
+
+/* ----------------------------------------------------------------
+   Concierge component classes
+   ---------------------------------------------------------------- */
+
+.font-display    { font-family: var(--font-display)  !important; }
+.font-headline   { font-family: var(--font-headline) !important; }
+.font-body-serif { font-family: var(--font-body)     !important; }
+.font-ui         { font-family: var(--font-ui)       !important; }
+.font-accent     { font-family: var(--font-accent)   !important; }
+
+.label, .eyebrow {
+  font-family: var(--font-ui);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+.rule-gold {
+  height: 1px;
+  background: var(--copper);
+  border: 0;
+  width: 48px;
+  display: block;
+}
+.gold-line {
+  width: 32px;
+  height: 1px;
+  background: var(--copper);
+  display: inline-block;
+}
+
+/* Concierge card surface */
+.concierge-card {
+  background: var(--cobalt-surface);
+  border: 1px solid var(--cobalt-line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-soft);
+  transition: background var(--dur-quick) var(--ease-editorial),
+              box-shadow  var(--dur-mid)   var(--ease-editorial);
+}
+.concierge-card:hover {
+  background: var(--cobalt-elevated);
+  box-shadow: var(--shadow-soft-lg);
+}
+
+/* Trip card: image scale + copper rule grow on hover */
+.concierge-trip-card .card-photo-inner {
+  transition: transform var(--dur-mid) var(--ease-editorial);
+}
+.concierge-trip-card:hover .card-photo-inner {
+  transform: scale(1.03);
+}
+.card-rule {
+  width: 0;
+  height: 1px;
+  background: var(--copper);
+  transition: width var(--dur-mid) var(--ease-editorial);
+  display: block;
+}
+.concierge-trip-card:hover .card-rule {
+  width: 32px;
+}
+
+/* Status badges */
+.badge-active {
+  background: var(--copper-soft);
+  border: 1px solid var(--copper-line);
+  color: var(--copper);
+  border-radius: var(--r-pill);
+  padding: 2px 12px;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.badge-completed {
+  background: var(--verdigris-soft);
+  border: 1px solid var(--verdigris-line);
+  color: var(--verdigris);
+  border-radius: var(--r-pill);
+  padding: 2px 12px;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.badge-upcoming {
+  background: rgba(156, 181, 201, 0.12);
+  border: 1px solid rgba(156, 181, 201, 0.28);
+  color: var(--steel);
+  border-radius: var(--r-pill);
+  padding: 2px 12px;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.badge-warning {
+  background: var(--mustard-soft);
+  border: 1px solid var(--mustard-line);
+  color: var(--mustard);
+  border-radius: var(--r-pill);
+  padding: 2px 12px;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.badge-error {
+  background: var(--oxblood-soft);
+  border: 1px solid var(--oxblood-line);
+  color: #c4614e;
+  border-radius: var(--r-pill);
+  padding: 2px 12px;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Countdown pill over photos */
+.countdown-pill {
+  background: rgba(8, 23, 41, 0.78);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--copper-line);
+  color: var(--ivory);
+  border-radius: var(--r-pill);
+  padding: 4px 14px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Topbar glass over hero imagery */
+.topbar-glass {
+  background: rgba(8, 23, 41, 0.78);
+  backdrop-filter: blur(14px) saturate(1.05);
+  border-bottom: 1px solid var(--cobalt-line);
+}
+
+/* Sidebar nav active state */
+.nav-active {
+  background: var(--copper-soft) !important;
+  color: var(--copper) !important;
+  border-left: 2px solid var(--copper);
+}
+
+/* Copper CTA button */
+.btn-copper {
+  background: var(--copper);
+  color: var(--cobalt-deep);
+  font-family: var(--font-ui);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: var(--r-card);
+  transition: background var(--dur-quick) var(--ease-editorial),
+              transform  var(--dur-quick) var(--ease-editorial);
+}
+.btn-copper:hover  { background: var(--copper-deep); }
+.btn-copper:active { transform: scale(0.99); }
+
+/* Outlined ivory button */
+.btn-ivory {
+  background: transparent;
+  border: 1px solid var(--ivory-line);
+  color: var(--ivory);
+  font-family: var(--font-ui);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  border-radius: var(--r-card);
+  transition: border-color var(--dur-quick) var(--ease-editorial),
+              color        var(--dur-quick) var(--ease-editorial);
+}
+.btn-ivory:hover {
+  border-color: var(--copper);
+  color: var(--copper);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar              { width: 4px; height: 4px; }
+::-webkit-scrollbar-track        { background: var(--cobalt-deep); }
+::-webkit-scrollbar-thumb        { background: var(--cobalt-line); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover  { background: var(--copper-line); }

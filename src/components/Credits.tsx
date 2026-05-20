@@ -1,113 +1,163 @@
-
 import React from 'react';
-import { Activity, Gift, CreditCard, Star, Calendar } from 'lucide-react';
+import { Activity, Gift, CreditCard, Star, Calendar, ArrowUpRight, ArrowDownLeft } from 'lucide-react';
 
 const Credits = () => {
   const creditHistory = [
-    { id: 1, action: 'Trip Completion Bonus', amount: 500, date: '2024-01-15', type: 'earned' },
-    { id: 2, action: 'Referral Bonus', amount: 250, date: '2024-01-10', type: 'earned' },
-    { id: 3, action: 'Hotel Booking Discount', amount: -150, date: '2024-01-08', type: 'used' },
-    { id: 4, action: 'Sustainability Bonus', amount: 100, date: '2024-01-05', type: 'earned' },
-    { id: 5, action: 'Flight Upgrade', amount: -300, date: '2023-12-20', type: 'used' }
+    { id: 1, action: 'Trip Completion Bonus',   amount: 500,  date: 'January 15, 2024', type: 'earned' },
+    { id: 2, action: 'Referral Bonus',          amount: 250,  date: 'January 10, 2024', type: 'earned' },
+    { id: 3, action: 'Hotel Booking Discount',  amount: -150, date: 'January 8, 2024',  type: 'used'   },
+    { id: 4, action: 'Sustainability Bonus',    amount: 100,  date: 'January 5, 2024',  type: 'earned' },
+    { id: 5, action: 'Flight Upgrade',          amount: -300, date: 'December 20, 2023',type: 'used'   },
   ];
 
   const rewardOptions = [
-    { title: 'Flight Upgrade', cost: 1000, description: 'Upgrade to business class', icon: CreditCard },
-    { title: 'Hotel Discount', cost: 500, description: '20% off next hotel booking', icon: Gift },
-    { title: 'Airport Lounge Access', cost: 750, description: 'Access to premium lounges', icon: Star },
-    { title: 'Travel Insurance', cost: 300, description: 'Free travel insurance for next trip', icon: Activity }
+    { title: 'Flight Upgrade',       cost: 1000, description: 'Upgrade to business class',          icon: CreditCard },
+    { title: 'Hotel Discount',       cost: 500,  description: '20% off your next stay',             icon: Gift       },
+    { title: 'Airport Lounge',       cost: 750,  description: 'Access to premium lounges',          icon: Star       },
+    { title: 'Travel Insurance',     cost: 300,  description: 'Free coverage for your next journey',icon: Activity   },
+  ];
+
+  const earningMethods = [
+    { title: 'Complete Journeys',   desc: 'Earn 500 credits per completed trip', icon: Calendar, color: 'var(--verdigris)' },
+    { title: 'Refer Friends',       desc: 'Get 250 credits per introduction',    icon: Gift,     color: 'var(--copper)'    },
+    { title: 'Leave Reviews',       desc: '50 credits per honest reflection',    icon: Star,     color: 'var(--mustard)'   },
+    { title: 'Sustainable Travel',  desc: 'Bonus credits for eco choices',       icon: Activity, color: 'var(--verdigris)' },
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
+
+      {/* ── Page header ── */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Travel Credits</h1>
-        <p className="text-gray-600">Earn and redeem credits for your amazing journeys</p>
+        <p style={{ fontFamily: 'var(--font-ui)', fontWeight: 300, fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--copper)' }}>
+          The ledger
+        </p>
+        <div className="rule-gold mt-2 mb-2" />
+        <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: 'clamp(28px, 4vw, 48px)', lineHeight: 1.08, letterSpacing: '-0.015em', color: 'var(--ivory)' }}>
+          Travel Credits
+        </h1>
+        <p className="mt-2" style={{ fontFamily: 'var(--font-body)', color: 'var(--steel)', fontSize: 15, lineHeight: 1.7 }}>
+          Earn and redeem credits across every journey.
+        </p>
       </div>
 
-      {/* Credit Balance */}
-      <div className="bg-gradient-to-r from-blue-500 to-teal-500 rounded-2xl shadow-xl p-8 text-white">
-        <div className="flex items-center justify-between">
+      {/* ── Balance panel — Cobalt Deep ── */}
+      <div
+        className="p-8 rounded-lg"
+        style={{ background: 'var(--cobalt-deep)', border: '1px solid var(--cobalt-line)', boxShadow: 'var(--shadow-soft-lg)' }}
+      >
+        <div className="flex items-start justify-between gap-6">
           <div>
-            <h2 className="text-xl font-semibold mb-2">Available Credits</h2>
-            <div className="text-4xl font-bold mb-4">2,450</div>
-            <p className="opacity-90">Keep exploring to earn more!</p>
+            <p style={{ fontFamily: 'var(--font-ui)', fontWeight: 300, fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--steel)' }}>
+              Available Credits
+            </p>
+            <div className="rule-gold my-3" />
+            <p
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 300,
+                fontSize: 'clamp(48px, 6vw, 80px)',
+                lineHeight: 1,
+                letterSpacing: '-0.02em',
+                color: 'var(--ivory)',
+              }}
+            >
+              2,450
+            </p>
+            <p className="mt-3" style={{ fontFamily: 'var(--font-body)', color: 'var(--steel)', fontSize: 14 }}>
+              550 more to your next reward.
+            </p>
           </div>
-          <div className="text-right">
-            <Activity size={48} className="opacity-50 mb-4" />
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-              <span className="text-sm font-medium">Next Reward: 550 credits</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Earning Methods */}
-      <div className="bg-white rounded-2xl shadow-lg p-8">
-        <h3 className="text-xl font-semibold text-gray-800 mb-6">How to Earn Credits</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg">
-            <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
-              <Calendar className="text-white" size={24} />
-            </div>
-            <div>
-              <h4 className="font-semibold text-gray-800">Complete Trips</h4>
-              <p className="text-gray-600 text-sm">Earn 500 credits per completed trip</p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-4 p-4 bg-blue-50 rounded-lg">
-            <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
-              <Gift className="text-white" size={24} />
-            </div>
-            <div>
-              <h4 className="font-semibold text-gray-800">Refer Friends</h4>
-              <p className="text-gray-600 text-sm">Get 250 credits for each referral</p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-4 p-4 bg-purple-50 rounded-lg">
-            <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
-              <Star className="text-white" size={24} />
-            </div>
-            <div>
-              <h4 className="font-semibold text-gray-800">Leave Reviews</h4>
-              <p className="text-gray-600 text-sm">Earn 50 credits per honest review</p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-4 p-4 bg-teal-50 rounded-lg">
-            <div className="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center">
-              <Activity className="text-white" size={24} />
-            </div>
-            <div>
-              <h4 className="font-semibold text-gray-800">Sustainable Travel</h4>
-              <p className="text-gray-600 text-sm">Bonus credits for eco-friendly choices</p>
+          <div className="text-right shrink-0">
+            <Activity size={40} strokeWidth={1} style={{ color: 'var(--copper)', opacity: 0.5 }} />
+            <div
+              className="mt-4 px-4 py-2 rounded-lg"
+              style={{ background: 'var(--copper-soft)', border: '1px solid var(--copper-line)' }}
+            >
+              <span style={{ fontFamily: 'var(--font-ui)', fontWeight: 300, fontSize: 11, letterSpacing: '0.16em', color: 'var(--copper)' }}>
+                Gold Member
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Redeem Rewards */}
-      <div className="bg-white rounded-2xl shadow-lg p-8">
-        <h3 className="text-xl font-semibold text-gray-800 mb-6">Redeem Rewards</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {rewardOptions.map((reward, index) => {
-            const Icon = reward.icon;
+      {/* ── How to Earn ── */}
+      <div>
+        <div className="mb-5">
+          <h2 style={{ fontFamily: 'var(--font-headline)', fontWeight: 500, fontSize: 20, color: 'var(--ivory)' }}>
+            How to Earn
+          </h2>
+          <div className="rule-gold mt-2" />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {earningMethods.map((m, i) => {
+            const Icon = m.icon;
             return (
-              <div key={index} className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all duration-200">
+              <div
+                key={i}
+                className="flex items-center gap-4 p-4 rounded-lg"
+                style={{ background: 'var(--cobalt-surface)', border: '1px solid var(--cobalt-line)', borderRadius: 'var(--r-card)' }}
+              >
+                <div
+                  className="w-10 h-10 rounded flex items-center justify-center shrink-0"
+                  style={{ background: 'var(--cobalt-elevated)', borderRadius: 'var(--r-input)', border: '1px solid var(--cobalt-line)' }}
+                >
+                  <Icon size={18} strokeWidth={1.5} style={{ color: m.color }} />
+                </div>
+                <div>
+                  <p style={{ fontFamily: 'var(--font-headline)', fontWeight: 500, fontSize: 14, color: 'var(--ivory)' }}>
+                    {m.title}
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--steel)', lineHeight: 1.5 }}>
+                    {m.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Redeem Rewards ── */}
+      <div>
+        <div className="mb-5">
+          <h2 style={{ fontFamily: 'var(--font-headline)', fontWeight: 500, fontSize: 20, color: 'var(--ivory)' }}>
+            Redeem Rewards
+          </h2>
+          <div className="rule-gold mt-2" />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {rewardOptions.map((r, i) => {
+            const Icon = r.icon;
+            return (
+              <div
+                key={i}
+                className="concierge-card p-6"
+              >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <Icon className="text-blue-500" size={24} />
+                  <div className="flex items-center gap-3">
+                    <Icon size={20} strokeWidth={1.5} style={{ color: 'var(--copper)' }} />
                     <div>
-                      <h4 className="font-semibold text-gray-800">{reward.title}</h4>
-                      <p className="text-gray-600 text-sm">{reward.description}</p>
+                      <p style={{ fontFamily: 'var(--font-headline)', fontWeight: 500, fontSize: 15, color: 'var(--ivory)' }}>
+                        {r.title}
+                      </p>
+                      <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--steel)', lineHeight: 1.5 }}>
+                        {r.description}
+                      </p>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-lg font-bold text-blue-500">{reward.cost}</div>
-                    <div className="text-xs text-gray-500">credits</div>
+                  <div className="text-right shrink-0 ml-4">
+                    <p style={{ fontFamily: 'var(--font-ui)', fontWeight: 300, fontSize: 22, color: 'var(--copper)', letterSpacing: '-0.01em' }}>
+                      {r.cost.toLocaleString()}
+                    </p>
+                    <p style={{ fontFamily: 'var(--font-ui)', fontWeight: 300, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--steel)' }}>
+                      credits
+                    </p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors">
-                  Redeem Now
+                <button className="btn-copper w-full py-2.5 text-sm">
+                  Redeem
                 </button>
               </div>
             );
@@ -115,30 +165,57 @@ const Credits = () => {
         </div>
       </div>
 
-      {/* Credit History */}
-      <div className="bg-white rounded-2xl shadow-lg p-8">
-        <h3 className="text-xl font-semibold text-gray-800 mb-6">Recent Activity</h3>
-        <div className="space-y-4">
-          {creditHistory.map((transaction) => (
-            <div key={transaction.id} className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 transition-colors">
-              <div className="flex items-center space-x-4">
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                  transaction.type === 'earned' ? 'bg-green-100' : 'bg-red-100'
-                }`}>
-                  <Activity className={`${
-                    transaction.type === 'earned' ? 'text-green-600' : 'text-red-600'
-                  }`} size={20} />
+      {/* ── Credit History Ledger ── */}
+      <div>
+        <div className="mb-5">
+          <h2 style={{ fontFamily: 'var(--font-headline)', fontWeight: 500, fontSize: 20, color: 'var(--ivory)' }}>
+            Recent Activity
+          </h2>
+          <div className="rule-gold mt-2" />
+        </div>
+        <div
+          className="overflow-hidden rounded-lg"
+          style={{ background: 'var(--cobalt-surface)', border: '1px solid var(--cobalt-line)', boxShadow: 'var(--shadow-soft)' }}
+        >
+          {creditHistory.map((t, i) => (
+            <div
+              key={t.id}
+              className="flex items-center justify-between px-6 py-4 transition-colors"
+              style={{ borderBottom: i < creditHistory.length - 1 ? '1px solid var(--cobalt-line)' : undefined }}
+            >
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-8 h-8 rounded flex items-center justify-center shrink-0"
+                  style={{
+                    background: t.type === 'earned' ? 'var(--verdigris-soft)' : 'var(--oxblood-soft)',
+                    borderRadius: 'var(--r-input)',
+                  }}
+                >
+                  {t.type === 'earned'
+                    ? <ArrowUpRight size={14} strokeWidth={1.5} style={{ color: 'var(--verdigris)' }} />
+                    : <ArrowDownLeft size={14} strokeWidth={1.5} style={{ color: 'var(--oxblood)' }} />
+                  }
                 </div>
                 <div>
-                  <h4 className="font-medium text-gray-800">{transaction.action}</h4>
-                  <p className="text-gray-500 text-sm">{transaction.date}</p>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--ivory)' }}>
+                    {t.action}
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-ui)', fontWeight: 300, fontSize: 11, letterSpacing: '0.10em', color: 'var(--steel)' }}>
+                    {t.date}
+                  </p>
                 </div>
               </div>
-              <div className={`text-lg font-semibold ${
-                transaction.type === 'earned' ? 'text-green-600' : 'text-red-600'
-              }`}>
-                {transaction.type === 'earned' ? '+' : ''}{transaction.amount}
-              </div>
+              <span
+                style={{
+                  fontFamily: 'var(--font-ui)',
+                  fontWeight: 300,
+                  fontSize: 16,
+                  letterSpacing: '-0.01em',
+                  color: t.type === 'earned' ? 'var(--verdigris)' : 'var(--oxblood)',
+                }}
+              >
+                {t.type === 'earned' ? '+' : ''}{t.amount}
+              </span>
             </div>
           ))}
         </div>
